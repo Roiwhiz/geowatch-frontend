@@ -1,0 +1,78 @@
+{
+  "identification": {
+    "title": "أهلا بك في GeoWatch",
+    "subtitle": "محطة الاستخبارات",
+    "description": "أدخل بريدك الإلكتروني للتعرف على نفسك والوصول إلى منصة تحليل الاستخبارات.",
+    "emailLabel": "عنوان البريد الإلكتروني",
+    "emailPlaceholder": "انت@مثال.com",
+    "submitButton": "تحديد",
+    "error": "فشل في تحديد المستخدم. يرجى المحاولة مرة أخرى.",
+    "loading": "جاري التعرف..."
+  },
+  "nav": {
+    "title": "GeoWatch",
+    "sessions": "الجلسات",
+    "newSession": "جلسة جديدة",
+    "noSession": "لم يتم العثور على جلسات",
+    "searchSession": "البحث عن الجلسات",
+    "today": "اليوم",
+    "yesterday": "أمس",
+    "older": "أقدم",
+    "delete": "حذف",
+    "rename": "إعادة تسمية",
+    "deleteSessionConfirm": "حذف هذه الجلسة؟",
+    "cancel": "إلغاء",
+    "create": "إنشاء"
+  },
+  "chat": {
+    "placeholder": "اسأل عن الأحداث الجيوسياسية...",
+    "send": "إرسال",
+    "thinking": "التفكير",
+    "analyzing": "التحليل",
+    "generating": "الإنشاء",
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
+    "error": "فشل في إرسال الاستعلام",
+    "retry": "حاول مرة أخرى",
+    "networkError": "خطأ في الشبكة. تحقق من اتصالك.",
+    "shortcutHint": "Cmd + Enter للإرسال"
+  },
+  "report": {
+    "noReport": "اختر تقريراً لعرض التفاصيل",
+    "confidenceLabel": "الثقة",
+    "source": "المصدر",
+    "sources": "المصادر",
+    "frameworks": {
+      "realism": "الواقعية",
+      "liberalism": "الليبرالية",
+      "constructivism": "البنائية",
+      "political_economy": "الاقتصاد السياسي"
+    },
+    "relatedEvents": "الأحداث ذات الصلة",
+    "empty": "لا يوجد تقرير محدد",
+    "bluf": "النتيجة الرئيسية أولاً",
+    "background": "الخلفية",
+    "currentSituation": "الوضع الحالي",
+    "analysis": "التحليل",
+    "implications": "الآثار",
+    "framework": "الإطار التحليلي",
+    "confidenceLevels": {
+      "high": "ثقة عالية",
+      "medium": "ثقة متوسطة",
+      "low": "ثقة منخفضة"
+    },
+    "copyReport": "نسخ التقرير",
+    "partialSources": "بعض مصادر البيانات غير متوفرة. قد تكون النتائج غير مكتملة."
+  },
+  "empty": {
+    "noSessions": "حدد محادثة من الشريط الجانبي أو قم بإنشاء محادثة جديدة",
+    "noConversations": "اسألني أي شيء عن الجيوسياسة أو العلاقات الدولية أو الأحداث الجارية",
+    "loading": "جاري التحميل..."
+  },
+  "language": "اللغة",
+  "shortcuts": {
+    "send": "Cmd+Enter",
+    "newSession": "Cmd+K",
+    "close": "Esc"
+  }
+}

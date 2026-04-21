@@ -1,0 +1,78 @@
+{
+  "identification": {
+    "title": "Willkommen bei GeoWatch",
+    "subtitle": "Intelligenz-Arbeitsstation",
+    "description": "Geben Sie Ihre E-Mail ein, um sich zu identifizieren und auf die Plattform für Intelligenzanalysen zuzugreifen.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "sie@beispiel.de",
+    "submitButton": "Identifizieren",
+    "error": "Fehler beim Identifizieren des Benutzers. Bitte versuchen Sie es erneut.",
+    "loading": "Identifizierung läuft..."
+  },
+  "nav": {
+    "title": "GeoWatch",
+    "sessions": "Sitzungen",
+    "newSession": "Neue Sitzung",
+    "noSession": "Keine Sitzungen gefunden",
+    "searchSession": "Sitzungen suchen",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "older": "Älter",
+    "delete": "Löschen",
+    "rename": "Umbenennen",
+    "deleteSessionConfirm": "Diese Sitzung löschen?",
+    "cancel": "Abbrechen",
+    "create": "Erstellen"
+  },
+  "chat": {
+    "placeholder": "Fragen Sie nach geopolitischen Ereignissen...",
+    "send": "Senden",
+    "thinking": "Denken",
+    "analyzing": "Analysieren",
+    "generating": "Generieren",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "error": "Fehler beim Senden der Anfrage",
+    "retry": "Erneut versuchen",
+    "networkError": "Netzwerkfehler. Überprüfen Sie Ihre Verbindung.",
+    "shortcutHint": "Cmd + Eingabetaste zum Senden"
+  },
+  "report": {
+    "noReport": "Wählen Sie einen Bericht aus, um Details anzuzeigen",
+    "confidenceLabel": "Vertrauen",
+    "source": "Quelle",
+    "sources": "Quellen",
+    "frameworks": {
+      "realism": "Realismus",
+      "liberalism": "Liberalismus",
+      "constructivism": "Konstruktivismus",
+      "political_economy": "Politische Ökonomie"
+    },
+    "relatedEvents": "Verwandte Ereignisse",
+    "empty": "Kein Bericht ausgewählt",
+    "bluf": "Kurzfassung",
+    "background": "Hintergrund",
+    "currentSituation": "Aktuelle Lage",
+    "analysis": "Analyse",
+    "implications": "Auswirkungen",
+    "framework": "Analyse-Rahmen",
+    "confidenceLevels": {
+      "high": "Hohes Vertrauen",
+      "medium": "Mittleres Vertrauen",
+      "low": "Niedriges Vertrauen"
+    },
+    "copyReport": "Bericht kopieren",
+    "partialSources": "Einige Datenquellen waren nicht verfügbar. Ergebnisse könnten unvollständig sein."
+  },
+  "empty": {
+    "noSessions": "Wählen Sie ein Gespräch aus der Seitenleiste aus oder erstellen Sie ein neues.",
+    "noConversations": "Frag mich alles über Geopolitik, internationale Beziehungen oder aktuelle Ereignisse.",
+    "loading": "Wird geladen..."
+  },
+  "language": "Sprache",
+  "shortcuts": {
+    "send": "Cmd+Eingabetaste",
+    "newSession": "Cmd+K",
+    "close": "Esc"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "identification": {
+    "title": "Bienvenido a GeoWatch",
+    "subtitle": "Estación de Inteligencia",
+    "description": "Ingrese su correo electrónico para identificarse y acceder a la plataforma de análisis de inteligencia.",
+    "emailLabel": "Dirección de correo",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "submitButton": "Identificar",
+    "error": "Error al identificar al usuario. Inténtalo de nuevo.",
+    "loading": "Identificando..."
+  },
+  "nav": {
+    "title": "GeoWatch",
+    "sessions": "Sesiones",
+    "newSession": "Nueva sesión",
+    "noSession": "No se encontraron sesiones",
+    "searchSession": "Buscar sesiones",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "older": "Más antiguo",
+    "delete": "Eliminar",
+    "rename": "Renombrar",
+    "deleteSessionConfirm": "¿Eliminar esta sesión?",
+    "cancel": "Cancelar",
+    "create": "Créant"
+  },
+  "chat": {
+    "placeholder": "Pregunta sobre eventos geopolíticos...",
+    "send": "Enviar",
+    "thinking": "Pensando",
+    "analyzing": "Analizando",
+    "generating": "Generando",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "error": "Error al enviar la consulta",
+    "retry": "Reintentar",
+    "networkError": "Error de red. Verifica tu conexión.",
+    "shortcutHint": "Cmd + Enter para enviar"
+  },
+  "report": {
+    "noReport": "Selecciona un informe para ver detalles",
+    "confidenceLabel": "Confianza",
+    "source": "Fuente",
+    "sources": "Fuentes",
+    "frameworks": {
+      "realism": "Realismo",
+      "liberalism": "Liberalismo",
+      "constructivism": "Constructivismo",
+      "political_economy": "Economía política"
+    },
+    "relatedEvents": "Eventos relacionados",
+    "empty": "Ningún informe seleccionado",
+    "bluf": "Resumen principal",
+    "background": "Contexto",
+    "currentSituation": "Situación actual",
+    "analysis": "Análisis",
+    "implications": "Implicaciones",
+    "framework": "Marco analítico",
+    "confidenceLevels": {
+      "high": "Alta confianza",
+      "medium": "Confianza media",
+      "low": "Baja confianza"
+    },
+    "copyReport": "Copiar informe",
+    "partialSources": "Algunas fuentes no estaban disponibles. Los resultados pueden ser incompletos."
+  },
+  "empty": {
+    "noSessions": "Seleccione una conversación de la barra lateral o cree una nueva.",
+    "noConversations": "Pregúntame cualquier cosa sobre geopolítica, relaciones internacionales o eventos actuales.",
+    "loading": "Cargando..."
+  },
+  "language": "Idioma",
+  "shortcuts": {
+    "send": "Cmd+Enter",
+    "newSession": "Cmd+K",
+    "close": "Esc"
+  }
+}

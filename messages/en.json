@@ -1,0 +1,85 @@
+{
+  "identification": {
+    "title": "Welcome to GeoWatch",
+    "subtitle": "Intelligence Workstation",
+    "description": "Enter your email to identify yourself and access the intelligence analysis platform.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "submitButton": "Identify",
+    "error": "Failed to identify user. Please try again.",
+    "loading": "Identifying..."
+  },
+  "nav": {
+    "title": "GeoWatch",
+    "sessions": "Sessions",
+    "newSession": "New Session",
+    "noSession": "No sessions",
+    "searchSession": "Search Sessions",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "older": "Older",
+    "delete": "Delete",
+    "rename": "Rename",
+    "deleteSessionConfirm": "Delete this session?",
+    "cancel": "Cancel",
+    "create": "Creating"
+  },
+  "chat": {
+    "placeholder": "Ask about geopolitical events...",
+    "send": "Send",
+    "thinking": "Thinking",
+    "analyzing": "Analyzing",
+    "generating": "Generating",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "error": "Failed to submit query",
+    "retry": "Try again",
+    "networkError": "Network error. Check your connection.",
+    "shortcutHint": "Cmd + Enter to send"
+  },
+  "report": {
+    "noReport": "Select a report to view details",
+
+    "confidenceLabel": "Confidence",
+
+    "source": "Source",
+    "sources": "Sources",
+
+    "frameworks": {
+      "realism": "Realism",
+      "liberalism": "Liberalism",
+      "constructivism": "Constructivism",
+      "political_economy": "Political Economy"
+    },
+
+    "relatedEvents": "Related Events",
+    "empty": "No report selected",
+
+    "bluf": "Bottom Line Up Front",
+    "background": "Background",
+    "currentSituation": "Current Situation",
+    "analysis": "Analysis",
+    "implications": "Implications",
+    "framework": "Framework",
+
+    "confidenceLevels": {
+      "high": "High confidence",
+      "medium": "Medium confidence",
+      "low": "Low confidence"
+    },
+
+    "copyReport": "Copy report",
+    "partialSources": "Some data sources were unavailable. Results may be incomplete."
+  },
+  "empty": {
+    "noSessions": "Select a conversation from the sidebar or create a new one",
+    "noConversations": "Ask me anything about geopolitics, international relations, or current events.",
+    "loading": "Loading..."
+  },
+  "language": "Language",
+  "shortcuts": {
+    "send": "Cmd+Enter",
+    "newSession": "Cmd+K",
+    "close": "Esc"
+  }
+}

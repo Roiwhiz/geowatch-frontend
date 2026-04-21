@@ -1,0 +1,78 @@
+{
+  "identification": {
+    "title": "欢迎来到 GeoWatch",
+    "subtitle": "情报工作站",
+    "description": "输入您的电子邮件以进行身份验证并访问情报分析平台。",
+    "emailLabel": "电子邮件地址",
+    "emailPlaceholder": "你@例子.com",
+    "submitButton": "识别",
+    "error": "用户识别失败。请重试。",
+    "loading": "正在识别..."
+  },
+  "nav": {
+    "title": "GeoWatch",
+    "sessions": "会话",
+    "newSession": "新会话",
+    "noSession": "未找到会话",
+    "searchSession": "搜索会话",
+    "today": "今天",
+    "yesterday": "昨天",
+    "older": "更早",
+    "delete": "删除",
+    "rename": "重命名",
+    "deleteSessionConfirm": "删除此会话？",
+    "cancel": "Cancel",
+    "create": "创造"
+  },
+  "chat": {
+    "placeholder": "询问关于地缘政治事件...",
+    "send": "发送",
+    "thinking": "思考中",
+    "analyzing": "分析中",
+    "generating": "生成中",
+    "copy": "复制",
+    "copied": "已复制！",
+    "error": "提交查询失败",
+    "retry": "重试",
+    "networkError": "网络错误。请检查您的连接。",
+    "shortcutHint": "Cmd + Enter 发送"
+  },
+  "report": {
+    "noReport": "选择报告以查看详细信息",
+    "confidenceLabel": "置信度",
+    "source": "来源",
+    "sources": "来源",
+    "frameworks": {
+      "realism": "现实主义",
+      "liberalism": "自由主义",
+      "constructivism": "建构主义",
+      "political_economy": "政治经济学"
+    },
+    "relatedEvents": "相关事件",
+    "empty": "未选择报告",
+    "bluf": "核心结论",
+    "background": "背景",
+    "currentSituation": "当前情况",
+    "analysis": "分析",
+    "implications": "影响",
+    "framework": "分析框架",
+    "confidenceLevels": {
+      "high": "高置信度",
+      "medium": "中等置信度",
+      "low": "低置信度"
+    },
+    "copyReport": "复制报告",
+    "partialSources": "部分数据来源不可用，结果可能不完整。"
+  },
+  "empty": {
+    "noSessions": " 从侧边栏选择对话或新建一个对话",
+    "noConversations": " 问我任何关于地缘政治、国际关系或时事的问题",
+    "loading": "加载中..."
+  },
+  "language": "语言",
+  "shortcuts": {
+    "send": "Cmd+Enter",
+    "newSession": "Cmd+K",
+    "close": "Esc"
+  }
+}
