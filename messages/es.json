@@ -67,7 +67,11 @@
   "empty": {
     "noSessions": "Seleccione una conversación de la barra lateral o cree una nueva.",
     "noConversations": "Pregúntame cualquier cosa sobre geopolítica, relaciones internacionales o eventos actuales.",
-    "loading": "Cargando..."
+    "newConversation": "Seleccione una conversación de la barra lateral o cree una nueva.",
+    "loading": "Cargando...",
+    "notFound": "Sesión no encontrada",
+    "notFoundDescription": " Esta sesión no existe o ha sido eliminada",
+    "homepage": "Volver a la página principal"
   },
   "language": "Idioma",
   "shortcuts": {

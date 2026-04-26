@@ -11,20 +11,43 @@ export function useChatSession(sessionId: string | null) {
   const queryClient = useQueryClient();
   const locale = useLocale();
   const [error, setError] = useState<string | null>(null);
+  const [reportIds, setReportIds] = useState<Record<string, string>>({});
 
-  // Fetch messages
   const {
     data: messages = [],
     isLoading: isLoadingMessages,
     error: messagesError,
   } = useQuery({
     queryKey: ["messages", sessionId],
-    queryFn: () => apiService.getMessages(sessionId!),
+    queryFn: async () => {
+      const msgs = await apiService.getMessages(sessionId!);
+      // Seed the report cache for any message that has a reportId
+      msgs.forEach((m) => {
+        if (m.reportId) {
+          setReportIds((prev) => ({
+            ...prev,
+            [m.id]: m.reportId!,
+          }));
+          // Pre-fetch into query cache so ReportRenderer loads instantly
+          queryClient.prefetchQuery({
+            queryKey: ["report", m.reportId],
+            queryFn: () => apiService.getReport(m.reportId!),
+          });
+        }
+      });
+      return msgs;
+    },
     enabled: Boolean(sessionId),
     staleTime: 3 * 60 * 1000,
+    retry: (failureCount, error) => {
+      if (error instanceof APIError && error.status === 404) return false;
+      return failureCount < 2;
+    },
   });
 
-  // Send message
+  const sessionNotFound =
+    messagesError instanceof APIError && messagesError.status === 404;
+
   const sendMessageMutation = useMutation({
     mutationFn: (query: string) => apiService.chat(sessionId!, query, locale),
 
@@ -50,16 +73,29 @@ export function useChatSession(sessionId: string | null) {
       return { previousMessages };
     },
 
-    onSuccess: async () => {
+    onSuccess: async (chatResponse) => {
       setError(null);
+
+      // Store the reportId so MessageBubble can fetch the structured report
+      if (chatResponse.reportId) {
+        setReportIds((prev) => ({
+          ...prev,
+          [chatResponse.reportId]: chatResponse.reportId,
+        }));
+        // Pre-fetch the report into the query cache
+        queryClient.prefetchQuery({
+          queryKey: ["report", chatResponse.reportId],
+          queryFn: () => apiService.getReport(chatResponse.reportId),
+        });
+      }
+
       await queryClient.invalidateQueries({
         queryKey: ["messages", sessionId],
       });
-      await queryClient.invalidateQueries({ queryKey: ["sessions"] });
+      await queryClient.invalidateQueries({ queryKey: ["userSessions"] });
     },
 
-    onError: (err, query, context) => {
-      // Rollback optimistic update
+    onError: (err, _query, context) => {
       if (context?.previousMessages) {
         queryClient.setQueryData(
           ["messages", sessionId],
@@ -67,22 +103,16 @@ export function useChatSession(sessionId: string | null) {
         );
       }
 
-      // Convert API error to user-friendly message
       let friendlyMessage = "Failed to send message. Please try again.";
-
       if (err instanceof APIError) {
         friendlyMessage = getUserFriendlyErrorMessage(err);
       } else if (err instanceof Error) {
-        if (err.message.includes("network")) {
-          friendlyMessage = "Network error. Please check your connection.";
-        } else {
-          friendlyMessage = err.message;
-        }
+        friendlyMessage = err.message.includes("network")
+          ? "Network error. Please check your connection."
+          : err.message;
       }
 
       setError(friendlyMessage);
-
-      // Auto-clear error after 5 seconds
       setTimeout(() => setError(null), 5000);
     },
   });
@@ -97,6 +127,8 @@ export function useChatSession(sessionId: string | null) {
   return {
     messages,
     isLoadingMessages,
+    sessionNotFound,
+    reportIds,
     isSending: sendMessageMutation.isPending,
     sendMessage,
     error,

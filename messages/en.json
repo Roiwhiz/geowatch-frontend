@@ -74,7 +74,11 @@
   "empty": {
     "noSessions": "Select a conversation from the sidebar or create a new one",
     "noConversations": "Ask me anything about geopolitics, international relations, or current events.",
-    "loading": "Loading..."
+    "newConversation": "Select a conversation from the sidebar or create a new one",
+    "loading": "Loading...",
+    "notFound": "Session not found",
+    "notFoundDescription": "This session does not exist or has been deleted",
+    "homepage": "Go back home"
   },
   "language": "Language",
   "shortcuts": {

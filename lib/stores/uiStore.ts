@@ -19,7 +19,7 @@ export const useUIstore = create<UIStore>()(
       setSidebarOpen: (open: boolean) => {
         set({ sidebarOpen: open });
       },
-      showIdentificationDialog: true,
+      showIdentificationDialog: false,
       setShowIdentificationDialog: (open: boolean) => {
         set({ showIdentificationDialog: open });
       },

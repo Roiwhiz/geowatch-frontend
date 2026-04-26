@@ -10,23 +10,28 @@ import { ChevronDown } from "lucide-react";
 import { useToast } from "../hooks/use-toast";
 import EmptyState from "./EmptyState";
 import MessageBubble from "./MessageBubble";
+import { MessageSkeleton } from "./MessageSkeleton";
 
 interface ConversationContainerProps {
   messages: Message[];
   onSubmitQuery: (query: string) => Promise<ChatResponse>;
   isLoading?: boolean;
+  isLoadingMessages?: boolean;
   sessionId: string | null;
   error?: string | null;
   onClearError?: () => void;
+  reportIds?: Record<string, string>;
 }
 
 export function ConversationContainer({
   messages,
   onSubmitQuery,
   isLoading = false,
+  isLoadingMessages = false,
   sessionId,
   error,
   onClearError,
+  reportIds,
 }: ConversationContainerProps) {
   const { dir } = useDirection();
   const { toast } = useToast();
@@ -135,12 +140,22 @@ export function ConversationContainer({
         <div className="max-w-3xl mx-auto px-4 py-6 w-full">
           {!sessionId ? (
             <EmptyState type="noSession" />
+          ) : isLoadingMessages ? ( // ← add this branch before messages.length check
+            <MessageSkeleton />
           ) : messages.length === 0 ? (
             <EmptyState type="newSession" />
           ) : (
             <>
               {messages.map((message, idx) => (
-                <MessageBubble key={message.id || idx} message={message} />
+                <MessageBubble
+                  key={message.id || idx}
+                  message={message}
+                  reportId={
+                    message.role === "assistant"
+                      ? reportIds?.[message.id]
+                      : undefined
+                  }
+                />
               ))}
               {showThinking && <ThinkingIndicator />}
             </>

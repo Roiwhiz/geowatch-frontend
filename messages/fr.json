@@ -67,7 +67,11 @@
   "empty": {
     "noSessions": "Sélectionnez une conversation dans la barre latérale ou créez-en une nouvelle.",
     "noConversations": "Posez-moi n'importe quelle question sur la géopolitique, les relations internationales ou l'actualité.",
-    "loading": "Chargement..."
+    "newConversation": "Sélectionnez une conversation dans la barre latérale ou créez-en une nouvelle.",
+    "loading": "Chargement...",
+    "notFound": "Session introuvable",
+    "notFoundDescription": "Cette session n'existe pas ou a été supprimée",
+    "homepage": "Retour à l'accueil"
   },
   "language": "Langue",
   "shortcuts": {

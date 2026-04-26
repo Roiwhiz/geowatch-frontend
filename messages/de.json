@@ -67,7 +67,11 @@
   "empty": {
     "noSessions": "Wählen Sie ein Gespräch aus der Seitenleiste aus oder erstellen Sie ein neues.",
     "noConversations": "Frag mich alles über Geopolitik, internationale Beziehungen oder aktuelle Ereignisse.",
-    "loading": "Wird geladen..."
+    "newConversation": "Wählen Sie ein Gespräch aus der Seitenleiste aus oder erstellen Sie ein neues.",
+    "loading": "Wird geladen...",
+    "notFound": "Session nicht gefunden",
+    "notFoundDescription": "Diese Sitzung existiert nicht oder wurde gelöscht",
+    "homepage": "Zurück zur Startseite"
   },
   "language": "Sprache",
   "shortcuts": {

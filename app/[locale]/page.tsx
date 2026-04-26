@@ -56,7 +56,10 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!mounted) return;
-    setShowIdentificationDialog(!userId);
+
+    if (!userId) {
+      setShowIdentificationDialog(true);
+    }
   }, [userId, mounted, setShowIdentificationDialog]);
 
   useEffect(() => {

@@ -67,7 +67,11 @@
   "empty": {
     "noSessions": " 从侧边栏选择对话或新建一个对话",
     "noConversations": " 问我任何关于地缘政治、国际关系或时事的问题",
-    "loading": "加载中..."
+    "newConversation": " 从侧边栏选择对话或新建一个对话",
+    "loading": "加载中...",
+    "notFound": "未找到会话",
+    "notFoundDescription": "此会话不存在或已被删除",
+    "homepage": "返回主页"
   },
   "language": "语言",
   "shortcuts": {

@@ -1,10 +1,9 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export function useDirection() {
-  const params = useParams();
-  const locale = typeof params.locale === "string" ? params.locale : "en";
+  const locale = useLocale();
   const isRTL = locale === "ar";
 
   return {

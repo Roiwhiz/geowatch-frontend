@@ -33,6 +33,7 @@ export const MessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
   content: z.string(),
   createdAt: z.string(),
+  reportId: z.string().nullable().optional(),
 });
 
 export const MessagesSchema = z.array(MessageSchema);
