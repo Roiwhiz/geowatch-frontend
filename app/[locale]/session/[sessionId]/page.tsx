@@ -20,7 +20,7 @@ export default function SessionPage() {
   } = useChatSession(sessionId);
 
   return (
-    <div className="h-full" dir={dir}>
+    <div className="flex flex-col h-full min-h-0" dir={dir}>
       <ConversationContainer
         messages={messages}
         onSubmitQuery={sendMessage}

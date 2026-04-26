@@ -24,7 +24,6 @@ export function QueryInput({ onSubmit, disabled = false }: QueryInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isLoading = disabled || isSubmitting;
-  const isValid = input.trim().length >= 3 && input.trim().length <= 2000;
 
   // Auto-resize textarea
   useEffect(() => {
@@ -51,6 +50,7 @@ export function QueryInput({ onSubmit, disabled = false }: QueryInputProps) {
 
       const trimmed = input.trim();
 
+      // Run all validation here — this runs on both Enter (desktop) and button tap (mobile)
       if (!trimmed) {
         showErrorToast("Please enter a message.");
         return;
@@ -76,7 +76,6 @@ export function QueryInput({ onSubmit, disabled = false }: QueryInputProps) {
           textareaRef.current.style.height = "auto";
         }
       } catch (err) {
-        // Error is already handled by parent component via toast
         console.debug("Failed to send:", err);
       } finally {
         setIsSubmitting(false);
@@ -114,7 +113,7 @@ export function QueryInput({ onSubmit, disabled = false }: QueryInputProps) {
       <Button
         type="submit"
         size="icon"
-        disabled={isLoading || !isValid}
+        disabled={isLoading}
         className={cn(
           "absolute bottom-2 h-8 w-8 rounded-full",
           "bg-primary text-primary-foreground hover:bg-primary/90",

@@ -11,19 +11,21 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`h-screen flex bg-background ${isRTL ? "flex-row-reverse" : ""}`}
+      className={`flex bg-background ${isRTL ? "flex-row-reverse" : ""}`}
+      style={{ height: "100dvh" }}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      {/* MOBILE SIDEBAR */}
       <MobileSidebar />
-
-      {/* DESKTOP SIDEBAR */}
       <DesktopSidebar />
 
-      {/* MAIN CONTENT AREA */}
-      <div className="flex flex-col flex-1 h-screen overflow-hidden">
+      <div
+        className="flex flex-col flex-1 overflow-hidden"
+        style={{ minHeight: 0 }}
+      >
         <Header />
-        <main className="flex-1 overflow-hidden min-h-0">{children}</main>
+        <main className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+          {children}
+        </main>
       </div>
     </div>
   );
