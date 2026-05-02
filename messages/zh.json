@@ -21,8 +21,8 @@
     "delete": "删除",
     "rename": "重命名",
     "deleteSessionConfirm": "删除此会话？",
-    "cancel": "Cancel",
-    "create": "创造"
+    "cancel": "取消",
+    "create": "创建中"
   },
   "chat": {
     "placeholder": "询问关于地缘政治事件...",
@@ -38,31 +38,12 @@
     "shortcutHint": "Cmd + Enter 发送"
   },
   "report": {
-    "noReport": "选择报告以查看详细信息",
-    "confidenceLabel": "置信度",
-    "source": "来源",
-    "sources": "来源",
-    "frameworks": {
-      "realism": "现实主义",
-      "liberalism": "自由主义",
-      "constructivism": "建构主义",
-      "political_economy": "政治经济学"
-    },
-    "relatedEvents": "相关事件",
-    "empty": "未选择报告",
-    "bluf": "核心结论",
     "background": "背景",
     "currentSituation": "当前情况",
     "analysis": "分析",
     "implications": "影响",
-    "framework": "分析框架",
-    "confidenceLevels": {
-      "high": "高置信度",
-      "medium": "中等置信度",
-      "low": "低置信度"
-    },
-    "copyReport": "复制报告",
-    "partialSources": "部分数据来源不可用，结果可能不完整。"
+    "unavailable": "报告详情不可用。",
+    "copy": "复制"
   },
   "empty": {
     "noSessions": " 从侧边栏选择对话或新建一个对话",

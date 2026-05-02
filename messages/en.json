@@ -38,38 +38,12 @@
     "shortcutHint": "Cmd + Enter to send"
   },
   "report": {
-    "noReport": "Select a report to view details",
-
-    "confidenceLabel": "Confidence",
-
-    "source": "Source",
-    "sources": "Sources",
-
-    "frameworks": {
-      "realism": "Realism",
-      "liberalism": "Liberalism",
-      "constructivism": "Constructivism",
-      "political_economy": "Political Economy"
-    },
-
-    "relatedEvents": "Related Events",
-    "empty": "No report selected",
-
-    "bluf": "Bottom Line Up Front",
     "background": "Background",
     "currentSituation": "Current Situation",
     "analysis": "Analysis",
     "implications": "Implications",
-    "framework": "Framework",
-
-    "confidenceLevels": {
-      "high": "High confidence",
-      "medium": "Medium confidence",
-      "low": "Low confidence"
-    },
-
-    "copyReport": "Copy report",
-    "partialSources": "Some data sources were unavailable. Results may be incomplete."
+    "unavailable": "Report details unavailable.",
+    "copy": "Copy"
   },
   "empty": {
     "noSessions": "Select a conversation from the sidebar or create a new one",

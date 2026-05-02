@@ -22,7 +22,7 @@
     "rename": "Renommer",
     "deleteSessionConfirm": "Supprimer cette session ?",
     "cancel": "Annuler",
-    "create": "Creando"
+    "create": "Création"
   },
   "chat": {
     "placeholder": "Posez des questions sur les événements géopolitiques...",
@@ -38,31 +38,12 @@
     "shortcutHint": "Cmd + Entrée pour envoyer"
   },
   "report": {
-    "noReport": "选择报告以查看详细信息",
-    "confidenceLabel": "置信度",
-    "source": "来源",
-    "sources": "来源",
-    "frameworks": {
-      "realism": "现实主义",
-      "liberalism": "自由主义",
-      "constructivism": "建构主义",
-      "political_economy": "政治经济学"
-    },
-    "relatedEvents": "相关事件",
-    "empty": "未选择报告",
-    "bluf": "核心结论",
-    "background": "背景",
-    "currentSituation": "当前情况",
-    "analysis": "分析",
-    "implications": "影响",
-    "framework": "分析框架",
-    "confidenceLevels": {
-      "high": "高置信度",
-      "medium": "中等置信度",
-      "low": "低置信度"
-    },
-    "copyReport": "复制报告",
-    "partialSources": "部分数据来源不可用，结果可能不完整。"
+    "background": "Contexte",
+    "currentSituation": "Situation actuelle",
+    "analysis": "Analyse",
+    "implications": "Implications",
+    "unavailable": "Détails du rapport non disponibles.",
+    "copy": "Copier"
   },
   "empty": {
     "noSessions": "Sélectionnez une conversation dans la barre latérale ou créez-en une nouvelle.",

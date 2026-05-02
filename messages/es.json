@@ -22,7 +22,7 @@
     "rename": "Renombrar",
     "deleteSessionConfirm": "¿Eliminar esta sesión?",
     "cancel": "Cancelar",
-    "create": "Créant"
+    "create": "Crearndo"
   },
   "chat": {
     "placeholder": "Pregunta sobre eventos geopolíticos...",
@@ -38,31 +38,12 @@
     "shortcutHint": "Cmd + Enter para enviar"
   },
   "report": {
-    "noReport": "Selecciona un informe para ver detalles",
-    "confidenceLabel": "Confianza",
-    "source": "Fuente",
-    "sources": "Fuentes",
-    "frameworks": {
-      "realism": "Realismo",
-      "liberalism": "Liberalismo",
-      "constructivism": "Constructivismo",
-      "political_economy": "Economía política"
-    },
-    "relatedEvents": "Eventos relacionados",
-    "empty": "Ningún informe seleccionado",
-    "bluf": "Resumen principal",
     "background": "Contexto",
     "currentSituation": "Situación actual",
     "analysis": "Análisis",
     "implications": "Implicaciones",
-    "framework": "Marco analítico",
-    "confidenceLevels": {
-      "high": "Alta confianza",
-      "medium": "Confianza media",
-      "low": "Baja confianza"
-    },
-    "copyReport": "Copiar informe",
-    "partialSources": "Algunas fuentes no estaban disponibles. Los resultados pueden ser incompletos."
+    "unavailable": "Detalles del informe no disponibles.",
+    "copy": "Copiar"
   },
   "empty": {
     "noSessions": "Seleccione una conversación de la barra lateral o cree una nueva.",

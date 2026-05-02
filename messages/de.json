@@ -38,31 +38,12 @@
     "shortcutHint": "Cmd + Eingabetaste zum Senden"
   },
   "report": {
-    "noReport": "Wählen Sie einen Bericht aus, um Details anzuzeigen",
-    "confidenceLabel": "Vertrauen",
-    "source": "Quelle",
-    "sources": "Quellen",
-    "frameworks": {
-      "realism": "Realismus",
-      "liberalism": "Liberalismus",
-      "constructivism": "Konstruktivismus",
-      "political_economy": "Politische Ökonomie"
-    },
-    "relatedEvents": "Verwandte Ereignisse",
-    "empty": "Kein Bericht ausgewählt",
-    "bluf": "Kurzfassung",
     "background": "Hintergrund",
     "currentSituation": "Aktuelle Lage",
     "analysis": "Analyse",
     "implications": "Auswirkungen",
-    "framework": "Analyse-Rahmen",
-    "confidenceLevels": {
-      "high": "Hohes Vertrauen",
-      "medium": "Mittleres Vertrauen",
-      "low": "Niedriges Vertrauen"
-    },
-    "copyReport": "Bericht kopieren",
-    "partialSources": "Einige Datenquellen waren nicht verfügbar. Ergebnisse könnten unvollständig sein."
+    "unavailable": "Report details unavailable.",
+    "copy": "Kopieren"
   },
   "empty": {
     "noSessions": "Wählen Sie ein Gespräch aus der Seitenleiste aus oder erstellen Sie ein neues.",

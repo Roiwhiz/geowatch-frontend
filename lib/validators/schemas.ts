@@ -34,6 +34,7 @@ export const MessageSchema = z.object({
   content: z.string(),
   createdAt: z.string(),
   reportId: z.string().nullable().optional(),
+  responseType: z.enum(["report", "conversational"]).nullable().optional(),
 });
 
 export const MessagesSchema = z.array(MessageSchema);
@@ -58,6 +59,7 @@ export const ReportSchema = z.object({
     "constructivism",
     "political_economy",
   ]),
+  responseType: z.enum(["report", "conversational"]),
   output: ReportOutputSchema,
   partialSources: z.boolean(),
   createdAt: z.string(),
@@ -70,6 +72,7 @@ export const ChatResponseSchema = z.object({
   reportId: z.string(),
   sessionId: z.string(),
   createdAt: z.string(),
+  responseType: z.enum(["report", "conversational"]),
 });
 
 export const SessionRenameAndDeleteSchema = z.object({

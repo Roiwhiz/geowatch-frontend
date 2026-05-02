@@ -19,7 +19,7 @@ export default function SessionPage() {
     error,
     clearError,
     sessionNotFound,
-    reportIds,
+    reportMeta,
   } = useChatSession(sessionId);
 
   if (sessionNotFound) {
@@ -40,7 +40,7 @@ export default function SessionPage() {
         sessionId={sessionId}
         error={error}
         onClearError={clearError}
-        reportIds={reportIds}
+        reportMeta={reportMeta}
       />
     </div>
   );

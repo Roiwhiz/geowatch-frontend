@@ -38,31 +38,12 @@
     "shortcutHint": "Cmd + Enter للإرسال"
   },
   "report": {
-    "noReport": "اختر تقريراً لعرض التفاصيل",
-    "confidenceLabel": "الثقة",
-    "source": "المصدر",
-    "sources": "المصادر",
-    "frameworks": {
-      "realism": "الواقعية",
-      "liberalism": "الليبرالية",
-      "constructivism": "البنائية",
-      "political_economy": "الاقتصاد السياسي"
-    },
-    "relatedEvents": "الأحداث ذات الصلة",
-    "empty": "لا يوجد تقرير محدد",
-    "bluf": "النتيجة الرئيسية أولاً",
     "background": "الخلفية",
     "currentSituation": "الوضع الحالي",
     "analysis": "التحليل",
     "implications": "الآثار",
-    "framework": "الإطار التحليلي",
-    "confidenceLevels": {
-      "high": "ثقة عالية",
-      "medium": "ثقة متوسطة",
-      "low": "ثقة منخفضة"
-    },
-    "copyReport": "نسخ التقرير",
-    "partialSources": "بعض مصادر البيانات غير متوفرة. قد تكون النتائج غير مكتملة."
+    "unavailable": "تفاصيل التقرير غير متوفرة.",
+    "copy": "نسخ"
   },
   "empty": {
     "noSessions": "حدد محادثة من الشريط الجانبي أو قم بإنشاء محادثة جديدة",

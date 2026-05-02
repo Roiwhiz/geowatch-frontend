@@ -21,6 +21,10 @@ interface ConversationContainerProps {
   error?: string | null;
   onClearError?: () => void;
   reportIds?: Record<string, string>;
+  reportMeta?: Record<
+    string,
+    { reportId: string; responseType: "report" | "conversational" }
+  >;
 }
 
 export function ConversationContainer({
@@ -31,7 +35,7 @@ export function ConversationContainer({
   sessionId,
   error,
   onClearError,
-  reportIds,
+  reportMeta,
 }: ConversationContainerProps) {
   const { dir } = useDirection();
   const { toast } = useToast();
@@ -140,23 +144,27 @@ export function ConversationContainer({
         <div className="max-w-3xl mx-auto px-4 py-6 w-full">
           {!sessionId ? (
             <EmptyState type="noSession" />
-          ) : isLoadingMessages ? ( // ← add this branch before messages.length check
+          ) : isLoadingMessages ? (
             <MessageSkeleton />
           ) : messages.length === 0 ? (
             <EmptyState type="newSession" />
           ) : (
             <>
-              {messages.map((message, idx) => (
-                <MessageBubble
-                  key={message.id || idx}
-                  message={message}
-                  reportId={
-                    message.role === "assistant"
-                      ? reportIds?.[message.id]
-                      : undefined
-                  }
-                />
-              ))}
+              {messages.map((message, idx) => {
+                const meta =
+                  message.role === "assistant"
+                    ? reportMeta?.[message.id]
+                    : undefined;
+
+                return (
+                  <MessageBubble
+                    key={message.id || idx}
+                    message={message}
+                    reportId={meta?.reportId}
+                    responseType={meta?.responseType}
+                  />
+                );
+              })}
               {showThinking && <ThinkingIndicator />}
             </>
           )}

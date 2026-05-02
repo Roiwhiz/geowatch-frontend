@@ -11,7 +11,12 @@ export function useChatSession(sessionId: string | null) {
   const queryClient = useQueryClient();
   const locale = useLocale();
   const [error, setError] = useState<string | null>(null);
-  const [reportIds, setReportIds] = useState<Record<string, string>>({});
+  const [reportMeta, setReportMeta] = useState<
+    Record<
+      string,
+      { reportId: string; responseType: "report" | "conversational" }
+    >
+  >({});
 
   const {
     data: messages = [],
@@ -21,18 +26,21 @@ export function useChatSession(sessionId: string | null) {
     queryKey: ["messages", sessionId],
     queryFn: async () => {
       const msgs = await apiService.getMessages(sessionId!);
-      // Seed the report cache for any message that has a reportId
       msgs.forEach((m) => {
-        if (m.reportId) {
-          setReportIds((prev) => ({
+        if (m.reportId && m.responseType) {
+          setReportMeta((prev) => ({
             ...prev,
-            [m.id]: m.reportId!,
+            [m.id]: {
+              reportId: m.reportId!,
+              responseType: m.responseType!,
+            },
           }));
-          // Pre-fetch into query cache so ReportRenderer loads instantly
-          queryClient.prefetchQuery({
-            queryKey: ["report", m.reportId],
-            queryFn: () => apiService.getReport(m.reportId!),
-          });
+          if (m.responseType === "report") {
+            queryClient.prefetchQuery({
+              queryKey: ["report", m.reportId],
+              queryFn: () => apiService.getReport(m.reportId!),
+            });
+          }
         }
       });
       return msgs;
@@ -76,17 +84,22 @@ export function useChatSession(sessionId: string | null) {
     onSuccess: async (chatResponse) => {
       setError(null);
 
-      // Store the reportId so MessageBubble can fetch the structured report
       if (chatResponse.reportId) {
-        setReportIds((prev) => ({
+        setReportMeta((prev) => ({
           ...prev,
-          [chatResponse.reportId]: chatResponse.reportId,
+          [chatResponse.reportId]: {
+            reportId: chatResponse.reportId,
+            responseType: chatResponse.responseType,
+          },
         }));
-        // Pre-fetch the report into the query cache
-        queryClient.prefetchQuery({
-          queryKey: ["report", chatResponse.reportId],
-          queryFn: () => apiService.getReport(chatResponse.reportId),
-        });
+
+        // Only pre-fetch for structured reports — conversational ones render from rawOutput
+        if (chatResponse.responseType === "report") {
+          queryClient.prefetchQuery({
+            queryKey: ["report", chatResponse.reportId],
+            queryFn: () => apiService.getReport(chatResponse.reportId),
+          });
+        }
       }
 
       await queryClient.invalidateQueries({
@@ -128,7 +141,7 @@ export function useChatSession(sessionId: string | null) {
     messages,
     isLoadingMessages,
     sessionNotFound,
-    reportIds,
+    reportMeta,
     isSending: sendMessageMutation.isPending,
     sendMessage,
     error,
