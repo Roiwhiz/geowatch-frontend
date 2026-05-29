@@ -15,6 +15,7 @@ import { useSessionMutations } from "@/hooks/useSessionMutations";
 import { useDirection } from "@/hooks/useDirection";
 import Link from "next/link";
 import { useUIstore } from "@/lib/stores/uiStore";
+import { usePathname } from "next/navigation";
 
 export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
   const t = useTranslations("nav");
@@ -25,6 +26,8 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
 
   const [query, setQuery] = useState("");
   const { setSidebarOpen } = useUIstore();
+  const pathname = usePathname();
+
   const { data: sessions = [], error, isLoading } = useSessions();
   const { createMutation, renameMutation, deleteMutation } =
     useSessionMutations();
@@ -84,8 +87,13 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
         {!collapsed && (
           <Link
             href={`/${locale}`}
-            className="text-lg font-bold hover:text-primary transition-colors cursor-pointer pb-2 block"
-            onClick={() => setSidebarOpen(false)}
+            className="text-lg font-bold hover:text-primary transition-colors cursor-pointer pb-2 pl-2 block"
+            onClick={() => {
+              const isHomePage = pathname === `/${locale}`;
+              if (!isHomePage) {
+                setSidebarOpen(false);
+              }
+            }}
           >
             {t("title") || "GeoWatch"}
           </Link>
