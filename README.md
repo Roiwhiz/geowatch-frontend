@@ -54,7 +54,7 @@ The platform enables users to engage in analytical conversations with an AI assi
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:Roiwhiz/geowatch-frontend.git
    cd geowatch-frontend
    ```
 
