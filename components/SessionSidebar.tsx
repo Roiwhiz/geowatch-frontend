@@ -13,10 +13,11 @@ import SessionGroup from "./SessionGroup";
 import { useParams } from "next/navigation";
 import { useSessionMutations } from "@/hooks/useSessionMutations";
 import { useDirection } from "@/hooks/useDirection";
+import Link from "next/link";
 
 export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
   const t = useTranslations("nav");
-  const { isRTL } = useDirection();
+  const { isRTL, locale } = useDirection();
 
   const params = useParams() as { locale?: string; sessionId?: string };
   const activeSessionId = params.sessionId ?? null;
@@ -80,7 +81,12 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
       {/* HEADER */}
       <div className="p-3 space-y-3">
         {!collapsed && (
-          <h2 className="text-lg font-bold">{t("title") || "GeoWatch"}</h2>
+          <Link
+            href={`/${locale}`}
+            className="text-lg font-bold hover:text-primary transition-colors cursor-pointer"
+          >
+            {t("title") || "GeoWatch"}
+          </Link>
         )}
 
         <Button
