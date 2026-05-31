@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { APIError, apiService } from "@/lib/services/api";
 import { identificationService } from "@/lib/services/identification";
 import { Session, SingleSession } from "@/lib/validators/schemas";
@@ -17,6 +17,8 @@ export function useSessionMutations() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { locale } = useDirection();
+  const params = useParams();
+  const activeSessionId = params.sessionId as string | undefined;
 
   const userId = identificationService.getStoredUserId();
   const queryKey = ["userSessions", userId];
@@ -128,22 +130,31 @@ export function useSessionMutations() {
         old.filter((s) => s.id !== id),
       );
 
-      return { previous };
+      return { previous, deletedId: id };
     },
 
-    onSuccess: () => {
+    onSuccess: (_data, deletedId) => {
       toast({
         title: "Session deleted",
       });
+
+      if (activeSessionId === deletedId) {
+        router.push(`/${locale}`);
+      }
     },
 
-    onError: (error) => {
+    onError: (error, _id, context) => {
+      // Rollback optimistic update
+      if (context?.previous) {
+        queryClient.setQueryData(queryKey, context.previous);
+      }
+
       const message =
         error instanceof APIError
           ? getUserFriendlyErrorMessage(error)
           : error instanceof Error
             ? error.message
-            : "Try was an error while trying to delete the session";
+            : "There was an error while trying to delete the session";
       toast({
         variant: "destructive",
         title: "Failed to delete session",
