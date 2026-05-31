@@ -16,6 +16,7 @@ import { useDirection } from "@/hooks/useDirection";
 import Link from "next/link";
 import { useUIstore } from "@/lib/stores/uiStore";
 import { usePathname } from "next/navigation";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
   const t = useTranslations("nav");
@@ -28,7 +29,13 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
   const { setSidebarOpen } = useUIstore();
   const pathname = usePathname();
 
-  const { data: sessions = [], error, isLoading } = useSessions();
+  const {
+    data: sessions = [],
+    error,
+    isLoading,
+    refetch,
+    isRefetching,
+  } = useSessions();
   const { createMutation, renameMutation, deleteMutation } =
     useSessionMutations();
 
@@ -144,84 +151,88 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
 
       <Separator />
 
-      {/* CONTENT */}
-      <ScrollArea className="flex-1 min-h-0">
-        <div className="p-2 space-y-4">
-          {/* Loading */}
-          {isLoading && (
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          )}
-
-          {/* Error */}
-          {error && (
-            <div className="p-4 text-center">
-              <p className="text-sm text-destructive">
-                Failed to load sessions
-              </p>
-              <Button variant="outline" size="sm" className="mt-2">
-                Retry
-              </Button>
-            </div>
-          )}
-
-          {/* Content */}
-          {!isLoading && !error && (
-            <>
-              {!collapsed && (
-                <>
-                  {groups.today.length > 0 && (
-                    <SessionGroup
-                      label={t("today")}
-                      sessions={groups.today}
-                      activeSessionId={activeSessionId}
-                      onDelete={(id) => deleteMutation.mutate(id)}
-                      onRename={(id, title) =>
-                        renameMutation.mutate({ id, title })
-                      }
-                    />
-                  )}
-
-                  {groups.yesterday.length > 0 && (
-                    <SessionGroup
-                      label={t("yesterday")}
-                      sessions={groups.yesterday}
-                      activeSessionId={activeSessionId}
-                      onDelete={(id) => deleteMutation.mutate(id)}
-                      onRename={(id, title) =>
-                        renameMutation.mutate({ id, title })
-                      }
-                    />
-                  )}
-
-                  {groups.older.length > 0 && (
-                    <SessionGroup
-                      label={t("older")}
-                      sessions={groups.older}
-                      activeSessionId={activeSessionId}
-                      onDelete={(id) => deleteMutation.mutate(id)}
-                      onRename={(id, title) =>
-                        renameMutation.mutate({ id, title })
-                      }
-                    />
-                  )}
-
-                  {filteredSessions.length === 0 && (
-                    <div className="text-xs text-muted-foreground text-center py-4">
-                      {t("noSession")}
-                    </div>
-                  )}
-                </>
-              )}
-
-              {collapsed && (
-                <div className="flex items-center justify-center py-6 text-muted-foreground">
-                  <span className="text-lg">⋯</span>
-                </div>
-              )}
-            </>
-          )}
+      {/* Loading state */}
+      {isLoading && (
+        <div className="flex flex-1 items-center justify-center">
+          <LoadingSpinner size="lg" />
         </div>
-      </ScrollArea>
+      )}
+
+      {/* Error state */}
+      {error && !isLoading && (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 px-4">
+          <p className="text-sm text-destructive text-center">
+            Failed to load sessions
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => refetch()}
+            disabled={isRefetching}
+          >
+            {isRefetching ? <LoadingSpinner size="sm" /> : "Retry"}
+          </Button>
+        </div>
+      )}
+
+      {/* Success state */}
+      {!isLoading && !error && (
+        <ScrollArea className="flex-1 min-h-0">
+          <div className="p-2 space-y-4">
+            {!collapsed && (
+              <>
+                {groups.today.length > 0 && (
+                  <SessionGroup
+                    label={t("today")}
+                    sessions={groups.today}
+                    activeSessionId={activeSessionId}
+                    onDelete={(id) => deleteMutation.mutate(id)}
+                    onRename={(id, title) =>
+                      renameMutation.mutate({ id, title })
+                    }
+                  />
+                )}
+
+                {groups.yesterday.length > 0 && (
+                  <SessionGroup
+                    label={t("yesterday")}
+                    sessions={groups.yesterday}
+                    activeSessionId={activeSessionId}
+                    onDelete={(id) => deleteMutation.mutate(id)}
+                    onRename={(id, title) =>
+                      renameMutation.mutate({ id, title })
+                    }
+                  />
+                )}
+
+                {groups.older.length > 0 && (
+                  <SessionGroup
+                    label={t("older")}
+                    sessions={groups.older}
+                    activeSessionId={activeSessionId}
+                    onDelete={(id) => deleteMutation.mutate(id)}
+                    onRename={(id, title) =>
+                      renameMutation.mutate({ id, title })
+                    }
+                  />
+                )}
+
+                {filteredSessions.length === 0 && (
+                  <div className="text-xs text-muted-foreground text-center py-4">
+                    {t("noSession")}
+                  </div>
+                )}
+              </>
+            )}
+
+            {collapsed && (
+              <div className="flex items-center justify-center py-6 text-muted-foreground">
+                <span className="text-lg">⋯</span>
+              </div>
+            )}
+          </div>
+        </ScrollArea>
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { useUIstore } from "@/lib/stores/uiStore";
 import { apiService } from "@/lib/services/api";
 import { APIError } from "@/lib/services/api";
 import { useTranslations } from "next-intl";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [identificationError, setIdentificationError] = useState<string | null>(
@@ -68,8 +69,8 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="bg-background flex items-center justify-center min-h-screen">
-        {u("loading")}
+      <div className="flex items-center justify-center h-full">
+        <LoadingSpinner message={u("loading")} />
       </div>
     );
   }

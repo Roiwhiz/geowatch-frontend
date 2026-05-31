@@ -185,7 +185,7 @@ export function ConversationContainer({
         </div>
       )}
 
-      {/* Input Area - No border */}
+      {/* Input Area */}
       <div className="bg-background">
         <div className="w-full max-w-3xl mx-auto px-4 py-4">
           <QueryInput onSubmit={onSubmitQuery} disabled={isLoading} />

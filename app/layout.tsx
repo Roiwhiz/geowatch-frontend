@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/toaster";
+import { ServerWakeUp } from "@/components/ServerWakeUp";
 import "./globals.css";
 
 const geist = Geist({
@@ -33,7 +34,7 @@ export default async function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <ServerWakeUp>{children}</ServerWakeUp>
           <Toaster />
           <Analytics />
         </ThemeProvider>
