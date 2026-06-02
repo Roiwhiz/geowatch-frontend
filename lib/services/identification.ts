@@ -4,6 +4,7 @@ import type { User } from "../validators/schemas";
 interface IdentificationService {
   getStoredUserId(): string | null;
   storeUser(user: User): void;
+  clearUserId(): void;
 }
 
 export const identificationService: IdentificationService = {
@@ -15,5 +16,10 @@ export const identificationService: IdentificationService = {
   storeUser(user: User): void {
     if (typeof window === "undefined") return;
     cookieService.setUserId(user.id);
+  },
+
+  clearUserId(): void {
+    if (typeof window === "undefined") return;
+    cookieService.clearUserId();
   },
 };

@@ -3,39 +3,65 @@
 import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { identificationService } from "@/lib/services/identification";
-import UserIdentificationDialog from "@/components/UserIdentificationDialog";
 import { useUIstore } from "@/lib/stores/uiStore";
 import { apiService } from "@/lib/services/api";
 import { APIError } from "@/lib/services/api";
 import { useTranslations } from "next-intl";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import UserIdentificationDialog from "@/components/UserIdentificationDialog";
+
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [identificationError, setIdentificationError] = useState<string | null>(
     null,
   );
-  const { showIdentificationDialog, setShowIdentificationDialog } =
-    useUIstore();
+
+  const {
+    userId,
+    setUserId,
+    showIdentificationDialog,
+    setShowIdentificationDialog,
+  } = useUIstore();
+
   const queryClient = useQueryClient();
   const t = useTranslations("identification");
   const u = useTranslations("empty");
-  const userId = identificationService.getStoredUserId();
 
-  const { isPending: isUserPending } = useQuery({
+  useEffect(() => {
+    setMounted(true);
+
+    const storedId = identificationService.getStoredUserId();
+    if (storedId) {
+      setUserId(storedId);
+    }
+  }, [setUserId]);
+
+  const {
+    data: verifiedUser,
+    isPending: isVerifying,
+    isError: userNotFound,
+  } = useQuery({
     queryKey: ["user", userId],
     queryFn: () => apiService.getUserById(userId!),
-    enabled: !!userId,
+    enabled: !!userId && mounted,
     staleTime: 10 * 60 * 1000,
-    retry: 1,
+    retry: false,
   });
 
   const identifyUserMutation = useMutation({
     mutationFn: (email: string) => apiService.identifyUser(email),
 
-    onSuccess: (identifiedUser) => {
+    onSuccess: async (identifiedUser) => {
+      // Store in persistent storage (so it persists across sessions)
       identificationService.storeUser(identifiedUser);
       setIdentificationError(null);
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+
+      // Update global store — this triggers useSessions in the sidebar to re-read
+      setUserId(identifiedUser.id);
+
+      // Populate user cache under the verified id
+      queryClient.setQueryData(["user", identifiedUser.id], identifiedUser);
+
       setShowIdentificationDialog(false);
     },
 
@@ -43,7 +69,6 @@ export default function HomePage() {
       let message = "Failed to identify user. Please try again.";
       if (err instanceof APIError) message = err.message;
       else if (err instanceof Error) message = err.message;
-
       setIdentificationError(message);
     },
   });
@@ -53,19 +78,32 @@ export default function HomePage() {
     identifyUserMutation.mutate(email);
   };
 
-  const isLoading = !mounted || (userId && isUserPending);
-
   useEffect(() => {
     if (!mounted) return;
 
     if (!userId) {
+      identificationService.clearUserId();
+      setShowIdentificationDialog(true);
+      return;
+    }
+
+    // 5. If the user was not found in the database, clear the store and show dialog
+    if (userNotFound) {
+      identificationService.clearUserId();
+      setUserId(null); // Clear global store
+      queryClient.removeQueries({ queryKey: ["user", userId] });
       setShowIdentificationDialog(true);
     }
-  }, [userId, mounted, setShowIdentificationDialog]);
+  }, [
+    mounted,
+    userId,
+    userNotFound,
+    setShowIdentificationDialog,
+    setUserId,
+    queryClient,
+  ]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isLoading = !mounted || (!!userId && isVerifying);
 
   if (isLoading) {
     return (
@@ -77,7 +115,7 @@ export default function HomePage() {
 
   if (showIdentificationDialog) {
     return (
-      <div className="bg-background flex items-center justify-center min-h-screen">
+      <div className="bg-background flex items-center justify-center h-full">
         <UserIdentificationDialog
           isOpen={true}
           onSubmit={handleIdentification}

@@ -106,6 +106,7 @@ export default function SessionSidebar({ collapsed }: { collapsed: boolean }) {
           </Link>
         )}
 
+        {/* CREATE NEW SESSION & SEARCH */}
         <Button
           onClick={handleNewSession}
           variant="ghost"

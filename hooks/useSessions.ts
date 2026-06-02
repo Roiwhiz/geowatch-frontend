@@ -1,24 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import { identificationService } from "@/lib/services/identification";
 import { APIError, apiService } from "@/lib/services/api";
 import { toast } from "../hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getUserFriendlyErrorMessage } from "@/lib/services/api-client";
+import { useUIstore } from "@/lib/stores/uiStore";
 
 export function useSessions() {
-  const [userId, setUserId] = useState<string | null>(null);
+  const { userId } = useUIstore();
 
-  useEffect(() => {
-    const id = identificationService.getStoredUserId();
-    setUserId(id);
-  }, []);
+  const { data: fetchedUser } = useQuery({
+    queryKey: ["user", userId],
+    queryFn: () => apiService.getUserById(userId!),
+    enabled: !!userId,
+    staleTime: 10 * 60 * 1000,
+    retry: false,
+  });
+
+  const verifiedUserId = fetchedUser?.id ?? null;
 
   const query = useQuery({
-    queryKey: ["userSessions", userId],
-    queryFn: () => apiService.getSessions(userId!),
-    enabled: !!userId,
-    staleTime: 50 * 60 * 1000,
-    gcTime: 60 * 60 * 1000,
+    queryKey: ["userSessions", verifiedUserId],
+    queryFn: () => apiService.getSessions(verifiedUserId!),
+    enabled: !!verifiedUserId,
+    staleTime: 60 * 1000,
+    gcTime: 10 * 60 * 1000,
     retry: 2,
     retryDelay: 1500,
   });
@@ -30,7 +35,7 @@ export function useSessions() {
           ? getUserFriendlyErrorMessage(query.error)
           : query.error instanceof Error
             ? query.error.message
-            : "Could not load your previous conversation";
+            : "Could not load your previous conversations";
 
       toast({
         variant: "destructive",

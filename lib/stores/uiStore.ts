@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface UIStore {
+  userId: string | null;
+  setUserId: (id: string | null) => void;
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
   showIdentificationDialog: boolean;
@@ -30,6 +32,10 @@ export const useUIstore = create<UIStore>()(
       sidebarCollapsed: false,
       setSidebarCollapsed: (collapsed: boolean) => {
         set({ sidebarCollapsed: collapsed });
+      },
+      userId: null,
+      setUserId: (id: string | null) => {
+        set({ userId: id });
       },
     }),
     {
