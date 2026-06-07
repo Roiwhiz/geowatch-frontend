@@ -29,12 +29,7 @@ export default function HomePage() {
 
   useEffect(() => {
     setMounted(true);
-
-    const storedId = identificationService.getStoredUserId();
-    if (storedId) {
-      setUserId(storedId);
-    }
-  }, [setUserId]);
+  }, []);
 
   const {
     data: verifiedUser,

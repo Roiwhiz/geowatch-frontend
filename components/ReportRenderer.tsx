@@ -144,16 +144,87 @@ function BlufSection({ content }: { content: string }) {
 
 // ── Sources section — renders as clickable links ──────────────────────────────
 
+// function SourcesSection({ content }: { content: string }) {
+//   const [open, setOpen] = useState(false);
+
+//   if (!content) return null;
+
+//   // Parse numbered sources: "1. Title — domain.com — retrieved YYYY-MM-DD"
+//   const lines = content
+//     .split("\n")
+//     .map((l) => l.trim())
+//     .filter(Boolean);
+
+//   return (
+//     <div className="border border-border rounded-lg overflow-hidden">
+//       <button
+//         onClick={() => setOpen(!open)}
+//         className="w-full flex items-center justify-between px-4 py-3 bg-muted/50 hover:bg-muted transition-colors text-left"
+//       >
+//         <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+//           Sources ({lines.length})
+//         </span>
+//         {open ? (
+//           <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" />
+//         ) : (
+//           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+//         )}
+//       </button>
+
+//       {open && (
+//         <div className="px-4 py-3 space-y-1.5">
+//           {lines.map((line, i) => {
+//             // Extract URL if present
+//             const urlMatch = line.match(/https?:\/\/[^\s]+/);
+//             const url = urlMatch?.[0];
+//             // Clean up the line for display
+//             const display = line.replace(/^\d+\.\s*/, "");
+
+//             return url ? (
+//               <a
+//                 key={i}
+//                 href={url}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//                 className="block text-sm text-primary hover:underline truncate"
+//               >
+//                 {display}
+//               </a>
+//             ) : (
+//               <p key={i} className="text-sm text-muted-foreground">
+//                 {display}
+//               </p>
+//             );
+//           })}
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
 function SourcesSection({ content }: { content: string }) {
   const [open, setOpen] = useState(false);
 
   if (!content) return null;
 
-  // Parse numbered sources: "1. Title — domain.com — retrieved YYYY-MM-DD"
   const lines = content
     .split("\n")
     .map((l) => l.trim())
     .filter(Boolean);
+
+  const buildUrl = (line: string): string | null => {
+    // First try to find a full URL
+    const fullUrl = line.match(/https?:\/\/[^\s]+/)?.[0];
+    if (fullUrl) return fullUrl;
+
+    // Then try to find a bare domain (e.g. "reuters.com", "un.org")
+    const domainMatch = line.match(
+      /(?:^|[\s—–-])([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?:[\s—–-]|$)/,
+    );
+    if (domainMatch?.[1]) return `https://${domainMatch[1]}`;
+
+    return null;
+  };
 
   return (
     <div className="border border-border rounded-lg overflow-hidden">
@@ -174,11 +245,9 @@ function SourcesSection({ content }: { content: string }) {
       {open && (
         <div className="px-4 py-3 space-y-1.5">
           {lines.map((line, i) => {
-            // Extract URL if present
-            const urlMatch = line.match(/https?:\/\/[^\s]+/);
-            const url = urlMatch?.[0];
-            // Clean up the line for display
-            const display = line.replace(/^\d+\.\s*/, "");
+            const url = buildUrl(line);
+            // Remove leading number and clean up display text
+            const display = line.replace(/^\d+\.\s*/, "").trim();
 
             return url ? (
               <a
@@ -186,7 +255,7 @@ function SourcesSection({ content }: { content: string }) {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-primary hover:underline truncate"
+                className="flex items-start gap-1.5 text-sm text-primary hover:underline"
               >
                 {display}
               </a>
@@ -289,17 +358,17 @@ export function ReportRenderer({ reportId, className }: ReportRendererProps) {
         <Section
           title={t("currentSituation") || "Current Situation"}
           content={output.currentSituation}
-          defaultOpen={true}
+          defaultOpen={false}
         />
         <Section
           title={t("analysis") || "Analysis"}
           content={output.analysis}
-          defaultOpen={true}
+          defaultOpen={false}
         />
         <Section
           title={t("implications") || "Implications"}
           content={output.implications}
-          defaultOpen={true}
+          defaultOpen={false}
         />
         <SourcesSection content={output.sources} />
       </div>
