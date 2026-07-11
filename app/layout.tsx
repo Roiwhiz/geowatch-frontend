@@ -18,7 +18,7 @@ export const metadata = {
     template: "%s | GeoWatch",
   },
   description:
-    "GeoWatch is an autonomous AI agent that produces structured geopolitical intelligence reports. Powered by real-time web search, conflict data, and international relations frameworks.",
+    "Autonomous AI agent for geopolitical intelligence. Real-time analysis using conflict data, trade flows, and IR frameworks.",
   keywords: [
     "geopolitics",
     "intelligence",
@@ -36,7 +36,7 @@ export const metadata = {
     siteName: "GeoWatch",
     title: "GeoWatch — Geopolitical Intelligence Workstation",
     description:
-      "An autonomous AI agent that produces structured geopolitical intelligence reports using real-time data, conflict databases, and IR frameworks.",
+      "Autonomous AI agent for geopolitical intelligence. Real-time analysis using conflict data and IR frameworks.",
     images: [
       {
         url: "/og-image.png",
@@ -50,7 +50,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "GeoWatch — Geopolitical Intelligence Workstation",
     description:
-      "An autonomous AI agent that produces structured geopolitical intelligence reports using real-time data, conflict databases, and IR frameworks.",
+      "Autonomous AI agent for geopolitical intelligence. Real-time analysis using conflict data and IR frameworks.",
     images: ["/og-image.png"],
     creator: "https://x.com/StackAndStat",
   },
