@@ -138,7 +138,8 @@ export function ConversationContainer({
       {/* Messages Area */}
       <div
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto scroll-smooth"
+        // className="flex-1 overflow-y-auto scroll-smooth"
+        className="flex-1 overflow-y-auto scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         onScroll={handleScroll}
       >
         <div className="max-w-3xl mx-auto px-4 py-6 w-full">
